@@ -84,7 +84,70 @@ export class TimeSpan {
         return new TimeSpan({ days });
     }
 
+    add(timespan: TimeSpan) {
+        return new TimeSpan({ milliseconds: this.totalMilliseconds + timespan.totalMilliseconds })
+    }
+    subtract(timespan: TimeSpan) {
+        return new TimeSpan({ milliseconds: this.totalMilliseconds - timespan.totalMilliseconds })
+    }
+    duration() {
+        return new TimeSpan({ milliseconds: Math.abs(this.totalMilliseconds) })
+    }
 
+    addMilliseconds(milliseconds: number) {
+        this._milliseconds += milliseconds
+        normalizeTimeSpan(this);
+        return this;
+    }
+    subtractMilliseconds(milliseconds: number) {
+        this._milliseconds -= milliseconds
+        normalizeTimeSpan(this);
+        return this;
+    }
+
+    addSeconds(seconds: number) {
+        this._seconds += seconds
+        normalizeTimeSpan(this);
+        return this;
+    }
+    subtractSeconds(seconds: number) {
+        this._seconds -= seconds
+        normalizeTimeSpan(this);
+        return this;
+    }
+
+    addMinutes(minutes: number) {
+        this._minutes += minutes
+        normalizeTimeSpan(this);
+        return this;
+    }
+    subtractMinutes(minutes: number) {
+        this._minutes -= minutes
+        normalizeTimeSpan(this);
+        return this;
+    }
+
+    addHours(hours: number) {
+        this._hours += hours
+        normalizeTimeSpan(this);
+        return this;
+    }
+    subtractHours(hours: number) {
+        this._hours -= hours
+        normalizeTimeSpan(this);
+        return this;
+    }
+
+    addDays(days: number) {
+        this._days += days
+        normalizeTimeSpan(this);
+        return this;
+    }
+    subtractDays(days: number) {
+        this._days -= days
+        normalizeTimeSpan(this);
+        return this;
+    }
 
 
     get milliseconds() {
@@ -123,8 +186,6 @@ export class TimeSpan {
     get totalDays() {
         return Math.floor(this.totalMilliseconds / MSEC_PER_DAY);
     }
-
-
 }
 
 TimeSpan.prototype.toString = function () {
