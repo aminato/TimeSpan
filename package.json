@@ -1,0 +1,51 @@
+{
+    "name": "@aminato/timespan.js",
+    "version": "0.0.5",
+    "description": "Stop using magic numbers for time related values",
+    "author": "Andrea Minato",
+    "license": "MIT",
+    "source": "src/main.ts",
+    "main": "dist/main.umd.js",
+    "module": "dist/main.modern.module.js",
+    "unpkg": "dist/main.umd.js",
+    "types": "dist/main.d.ts",
+    "keywords": [
+        "microbundle",
+        "typescript"
+    ],
+    "files": [
+        "dist/**.js*",
+        "dist/**/*.ts"
+    ],
+    "scripts": {
+        "build": "microbundle",
+        "watch": "microbundle watch",
+        "test": "ava"
+    },
+    "devDependencies": {
+        "ava": "^3.15.0",
+        "esm": "^3.2.25",
+        "microbundle": "^0.13.2",
+        "np": "^7.5.0"
+    },
+    "ava": {
+        "require": [
+            "esm"
+        ]
+    },
+    "dependencies": {},
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org"
+    },
+    "directories": {
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AndreaMinato/timespan.git"
+    },
+    "bugs": {
+        "url": "https://github.com/AndreaMinato/timespan/issues"
+    },
+    "homepage": "https://github.com/AndreaMinato/timespan#readme"
+}
