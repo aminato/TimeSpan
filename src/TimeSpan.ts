@@ -186,6 +186,26 @@ export class TimeSpan {
     get totalDays() {
         return Math.floor(this.totalMilliseconds / MSEC_PER_DAY);
     }
+
+    equals(compare: TimeSpan) {
+        return compare.totalMilliseconds === this.totalMilliseconds;
+    }
+    lesser(compare: TimeSpan) {
+        return this.totalMilliseconds < compare.totalMilliseconds;
+    }
+    lesserEqual(compare: TimeSpan) {
+        return this.totalMilliseconds <= compare.totalMilliseconds;
+    }
+    greater(compare: TimeSpan) {
+        return this.totalMilliseconds > compare.totalMilliseconds;
+    }
+    greaterEqual(compare: TimeSpan) {
+        return this.totalMilliseconds >= compare.totalMilliseconds;
+    }
+    compareTo(compare: TimeSpan){
+        return this.totalMilliseconds - compare.totalMilliseconds;
+    }
+
 }
 
 TimeSpan.prototype.toString = function () {
