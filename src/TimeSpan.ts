@@ -206,6 +206,12 @@ export class TimeSpan {
         return this.totalMilliseconds - compare.totalMilliseconds;
     }
 
+    set formatter(value: string) {
+        this._format = value
+    }
+    format(format: string): string {
+        return formatTimespan(this, format)
+    }
 }
 
 TimeSpan.prototype.toString = function () {
