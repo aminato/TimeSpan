@@ -69,7 +69,7 @@ export class TimeSpan {
     _hours: number = 0;
     _days: number = 0;
 
-    _format = "D.HH:MM:SS.mmm"
+    _format = "D?.HH?:MM?:SS?.mmm?"
 
     constructor(parameters: TimeSpanConstructorParameters) {
         if (parameters.days) {
