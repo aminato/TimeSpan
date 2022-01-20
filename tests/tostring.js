@@ -16,3 +16,14 @@ test('0 day 0 hours, 1 minutes, 0 seconds and 0 ms', (t) => {
     let timespan = TimeSpan.fromMinutes(1)
     t.is(timespan.toString(), '0.00:01:00.000');
 });
+
+test('trim working', (t) => {
+    let timespan = TimeSpan.fromMinutes(1)
+    t.is(timespan.format("D?.HH?:MM:SS.mmm"), '01:00.000');
+    t.is(timespan.format("D?.HH:MM:SS.mmm"), '00:01:00.000');
+    t.is(timespan.format("D.HH:MM:SS.mmm"), '0.00:01:00.000');
+    timespan = TimeSpan.fromHours(26)
+    t.is(timespan.format("D?.HH?:MM?:SS.mmm"), '1.02:00:00.000');
+    t.is(timespan.format("D?.HH:MM?:SS.mmm"), '1.02:00:00.000');
+    t.is(timespan.format("D.HH:MM:SS.mmm"), '1.02:00:00.000');
+});

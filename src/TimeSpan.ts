@@ -12,6 +12,26 @@ function formatTimespan(ts: TimeSpan, format: string): string {
     formatter = new Intl.NumberFormat(undefined, { minimumIntegerDigits: 3 })
     const milliseconds = formatter.format(ts.milliseconds)
 
+
+    if (days === "0") {
+        format = format.replace(/D\?[^DHMSs]/g, '')
+        if (hours === "00") {
+            format = format.replace(/HH\?[^DHMSs]/g, '')
+            if (minutes === "00") {
+                format = format.replace(/MM\?[^DHMSs]/g, '')
+                if (seconds === "00") {
+                    format = format.replace(/SS\?[^DHMSs]/g, '')
+                    if (milliseconds === "000") {
+                        format = format.replace(/mmm\?[^DHMSs]/g, '')
+                    }
+                }
+            }
+        }
+    }
+
+    format = format.replace(/\?/g, '')
+
+
     return format.replace(/D/g, days).replace(/HH/g, hours).replace(/MM/g, minutes).replace(/SS/g, seconds).replace(/mmm/g, milliseconds)
 }
 
@@ -202,7 +222,7 @@ export class TimeSpan {
     greaterEqual(compare: TimeSpan) {
         return this.totalMilliseconds >= compare.totalMilliseconds;
     }
-    compareTo(compare: TimeSpan){
+    compareTo(compare: TimeSpan) {
         return this.totalMilliseconds - compare.totalMilliseconds;
     }
 
