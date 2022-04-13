@@ -5,7 +5,7 @@
     "author": "Andrea Minato",
     "license": "MIT",
     "source": "src/main.ts",
-    "unpkg": "dist/main.umd.js",
+    "unpkg": "./dist/@tempestive/timespan.umd.js",
     "types": "./dist/types/main.d.ts",
     "keywords": [],
     "main": "./dist/@tempestive/timespan.umd.js",
