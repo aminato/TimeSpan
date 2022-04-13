@@ -1,5 +1,5 @@
 import test from 'ava';
-import { TimeSpan } from '../dist/main';
+import { TimeSpan } from '../dist/timespan.es';
 
 test('1 day 2 hours, 20 minutes, 15 seconds and 300 ms', (t) => {
     let timespan = TimeSpan.fromDays(1).addHours(2).addMinutes(20).addSeconds(15).addMilliseconds(300)
@@ -14,7 +14,7 @@ test('1 day 2 hours, 20 minutes, 15 seconds and 300 ms', (t) => {
 
 test('0 day 0 hours, 1 minutes, 0 seconds and 0 ms', (t) => {
     let timespan = TimeSpan.fromMinutes(1)
-    t.is(timespan.toString(), '0.00:01:00.000');
+    t.is(timespan.toString(), '01:00.000');
 });
 
 test('trim working', (t) => {

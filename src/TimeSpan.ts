@@ -35,24 +35,7 @@ function formatTimespan(ts: TimeSpan, format: string): string {
     return format.replace(/D/g, days).replace(/HH/g, hours).replace(/MM/g, minutes).replace(/SS/g, seconds).replace(/mmm/g, milliseconds)
 }
 
-function normalizeTimeSpan(ts: TimeSpan) {
-    while (ts.milliseconds > 999) {
-        ts._milliseconds -= 1000;
-        ts._seconds += 1
-    }
-    while (ts.seconds > 59) {
-        ts._seconds -= 60;
-        ts._minutes += 1
-    }
-    while (ts.minutes > 59) {
-        ts._minutes -= 60;
-        ts._hours += 1
-    }
-    while (ts.hours > 23) {
-        ts._hours -= 24;
-        ts._days += 1
-    }
-}
+
 
 interface TimeSpanConstructorParameters {
     days?: number,
@@ -63,13 +46,32 @@ interface TimeSpanConstructorParameters {
 }
 
 export class TimeSpan {
-    _milliseconds: number = 0;
-    _seconds: number = 0;
-    _minutes: number = 0;
-    _hours: number = 0;
-    _days: number = 0;
+    private _milliseconds: number = 0;
+    private _seconds: number = 0;
+    private _minutes: number = 0;
+    private _hours: number = 0;
+    private _days: number = 0;
 
-    _format = "D?.HH?:MM?:SS?.mmm?"
+    private _format = "D?.HH?:MM?:SS?.mmm?"
+
+    private normalizeTimeSpan() {
+        while (this._milliseconds > 999) {
+            this._milliseconds -= 1000;
+            this._seconds += 1
+        }
+        while (this.seconds > 59) {
+            this._seconds -= 60;
+            this._minutes += 1
+        }
+        while (this.minutes > 59) {
+            this._minutes -= 60;
+            this._hours += 1
+        }
+        while (this.hours > 23) {
+            this._hours -= 24;
+            this._days += 1
+        }
+    }
 
     constructor(parameters: TimeSpanConstructorParameters) {
         if (parameters.days) {
@@ -88,9 +90,12 @@ export class TimeSpan {
             this._milliseconds = parameters.milliseconds;
         }
 
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
     }
 
+    static fromMilliseconds(milliseconds: number) {
+        return new TimeSpan({ milliseconds });
+    }
     static fromSeconds(seconds: number) {
         return new TimeSpan({ seconds });
     }
@@ -116,56 +121,56 @@ export class TimeSpan {
 
     addMilliseconds(milliseconds: number) {
         this._milliseconds += milliseconds
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
     subtractMilliseconds(milliseconds: number) {
         this._milliseconds -= milliseconds
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
 
     addSeconds(seconds: number) {
         this._seconds += seconds
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
     subtractSeconds(seconds: number) {
         this._seconds -= seconds
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
 
     addMinutes(minutes: number) {
         this._minutes += minutes
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
     subtractMinutes(minutes: number) {
         this._minutes -= minutes
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
 
     addHours(hours: number) {
         this._hours += hours
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
     subtractHours(hours: number) {
         this._hours -= hours
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
 
     addDays(days: number) {
         this._days += days
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
     subtractDays(days: number) {
         this._days -= days
-        normalizeTimeSpan(this);
+        this.normalizeTimeSpan();
         return this;
     }
 
@@ -226,6 +231,9 @@ export class TimeSpan {
         return this.totalMilliseconds - compare.totalMilliseconds;
     }
 
+    get formatter(){
+        return this._format
+    }
     set formatter(value: string) {
         this._format = value
     }
@@ -235,5 +243,5 @@ export class TimeSpan {
 }
 
 TimeSpan.prototype.toString = function () {
-    return formatTimespan(this, this._format)
+    return formatTimespan(this, this.formatter)
 }

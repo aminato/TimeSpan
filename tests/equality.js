@@ -1,5 +1,5 @@
 import test from 'ava';
-import { TimeSpan } from '../dist/main';
+import { TimeSpan } from '../dist/timespan.es';
 
 test('1 seconds is equals to 1000 ms', (t) => {
     t.is(TimeSpan.fromSeconds(1).totalMilliseconds, 1000);

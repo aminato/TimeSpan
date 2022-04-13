@@ -1,5 +1,5 @@
 import test from 'ava';
-import { TimeSpan } from '../dist/main';
+import { TimeSpan } from '../dist/timespan.es';
 
 test('120 seconds is equals to 2 minutes', (t) => {
     const timespan1 = TimeSpan.fromSeconds(120)
