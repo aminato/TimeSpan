@@ -1,3 +1,3 @@
-import { TimeSpan } from "../src/TimeSpan";
+import { TimeSpan } from "./TimeSpan";
 
 export { TimeSpan }
