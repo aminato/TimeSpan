@@ -1,6 +1,6 @@
 {
     "name": "@tempestive/timespan.js",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Stop using magic numbers for time related values",
     "author": "Andrea Minato",
     "license": "MIT",
