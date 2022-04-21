@@ -6,7 +6,8 @@ module.exports = defineConfig({
     build: {
         lib: {
             entry: path.resolve(__dirname, 'src/main.ts'),
-            name: '"@tempestive/timespan.js',
+            name: 'TimeSpan',
+            formats: ["cjs", "es", "umd"],
             fileName: (format) => `timespan.${format}.js`
         },
         rollupOptions: {
