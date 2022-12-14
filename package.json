@@ -2,35 +2,30 @@
     "name": "@tempestive/timespan.js",
     "version": "0.1.5",
     "description": "Stop using magic numbers for time related values",
+    "main": "dist/tempestive-timespan.js.cjs.js",
+    "module": "dist/tempestive-timespan.js.esm.js",
+    "umd:main": "dist/tempestive-timespan.js.umd.min.js",
+    "browser": {
+        "./dist/tempestive-timespan.js.cjs.js": "./dist/tempestive-timespan.js.browser.cjs.js",
+        "./dist/tempestive-timespan.js.esm.js": "./dist/tempestive-timespan.js.browser.esm.js"
+    },
     "author": "Andrea Minato",
     "license": "MIT",
-    "source": "src/main.ts",
-    "unpkg": "./dist/@tempestive/timespan.umd.js",
-    "types": "./dist/types/main.d.ts",
-    "keywords": [],
-    "main": "./dist/@tempestive/timespan.umd.js",
-    "module": "./dist/@tempestive/timespan.es.js",
-    "exports": {
-        ".": {
-            "import": "./dist/@tempestive/timespan.es.js",
-            "require": "./dist/@tempestive/timespan.umd.js"
-        }
-    },
     "files": [
         "dist"
     ],
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview",
+        "fix": "yarn preconstruct fix",
+        "build": "yarn preconstruct build",
         "test": "ava",
-        "buildts": "vite build && tsc --emitDeclarationOnly"
+        "publish": "npm publish --access public"
     },
     "devDependencies": {
+        "@babel/preset-typescript": "^7.18.6",
+        "@preconstruct/cli": "^2.2.2",
         "ava": "^3.15.0",
         "esm": "^3.2.25",
-        "typescript": "^4.5.4",
-        "vite": "^2.9.2"
+        "typescript": "^4.9.4"
     },
     "ava": {
         "require": [
@@ -50,5 +45,8 @@
     "bugs": {
         "url": "https://github.com/tempestive/TimeSpan/issues"
     },
-    "homepage": "https://github.com/tempestive/TimeSpan#readme"
+    "homepage": "https://github.com/tempestive/TimeSpan#readme",
+    "preconstruct": {
+        "umdName": "TimeSpan"
+    }
 }
